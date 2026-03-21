@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marmitouille</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="navbar-brand">🍲 Marmitouille</div>
+    <div class="navbar-links">
+      <a href="#genres">Genres</a>
+      <a href="#inspiration">Inspiration</a>
+      <a href="#liked">❤️ Likes</a>
+    </div>
+  </nav>
+
+  <!-- ─── SECTION GENRES ─────────────────────────────────────────────── -->
+  <section id="section-genres" class="section hidden">
+    <h1 class="section-title">Genres de recettes</h1>
+
+    <!-- Template d'un élément genre (custom element) -->
+    <genre-card class="genre-card-example" style="display:none">
+      <img class="genre-thumbnail" src="" alt="" />
+      <div class="genre-info">
+        <span class="genre-title"></span>
+        <span class="genre-count"></span>
+      </div>
+      <button class="btn-like" aria-label="Aimer ce genre">
+        <span class="icon">🤍</span>
+      </button>
+    </genre-card>
+
+    <ul class="genres"></ul>
+  </section>
+
+  <!-- ─── SECTION RECETTES ───────────────────────────────────────────── -->
+  <section id="section-recettes" class="section hidden">
+    <h1 class="section-title">Recettes</h1>
+
+    <!-- Template d'un élément recette (custom element) -->
+    <recipe-card class="recipe-card-example" style="display:none">
+      <img class="recipe-preview" src="" alt="" />
+      <div class="recipe-info">
+        <span class="recipe-name"></span>
+      </div>
+    </recipe-card>
+
+    <ul class="recettes"></ul>
+  </section>
+
+  <!-- ─── SECTION INSPIRATION ───────────────────────────────────────── -->
+  <section id="section-inspiration" class="section hidden">
+    <h1 class="section-title">Inspiration</h1>
+
+    <div class="inspiration-container">
+      <div class="inspiration-card">
+        <img class="inspiration-preview" src="" alt="" />
+        <h2 class="inspiration-name"></h2>
+        <div class="inspiration-steps"></div>
+      </div>
+      <div class="inspiration-controls">
+        <button id="btn-prev" class="btn-nav">← Précédent</button>
+        <span class="inspiration-counter"></span>
+        <button id="btn-next" class="btn-nav">Suivant →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION LIKED ─────────────────────────────────────────────── -->
+  <section id="section-liked" class="section hidden">
+    <h1 class="section-title">Likes</h1>
+    <ul class="liked-list"></ul>
+    <p class="liked-empty hidden">Aucun genre aimé pour l'instant.</p>
+  </section>
+
+  <script type="module" src="./index.js" type="module"></script>
+</body>
+</html>
