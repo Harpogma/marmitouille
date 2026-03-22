@@ -8,6 +8,7 @@ import { fetchGenre, fetchRecipesByGenre } from "./api.js";
 class RecipeCard extends HTMLElement {
   connectedCallback() {
     const recipe = this.recipe;
+    console.log(this.recipe);
     if (!recipe) return;
 
     this.innerHTML = `
