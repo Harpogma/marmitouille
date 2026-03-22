@@ -1,10 +1,10 @@
 // src/index.js
 // Point d'entrée : gestion du hashchange et routage entre les sections
 
-import { displayGenres }      from './genres.js';
-import { displayRecettes }    from './recettes.js';
-import { displayInspiration } from './inspiration.js';
-import { displayLiked }       from './liked.js';
+import { displayGenres }      from './pages/genres.js';
+import { displayRecettes }    from './pages/recettes.js';
+import { displayInspiration } from './pages/inspiration.js';
+import { displayLiked }       from './pages/liked.js';
 
 // Map hash → id de section HTML
 const SECTIONS = {

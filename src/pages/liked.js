@@ -1,7 +1,7 @@
-// src/liked.js
+// pages/liked.js
 // Affichage et gestion des genres préférés (likés)
 
-import { getLikedGenres, unlikeGenre } from './lib/local-storage.js';
+import { getLikedGenres, unlikeGenre } from '../lib/local-storage.js';
 
 /**
  * Affiche la liste des genres likés dans #section-liked

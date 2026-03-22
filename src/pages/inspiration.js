@@ -1,7 +1,7 @@
-// src/inspiration.js
+// pages/inspiration.js
 // Logique de la section inspiration : navigation entre toutes les recettes
 
-import { fetchAllRecipes } from './api.js';
+import { fetchAllRecipes } from '../api.js';
 
 let recipes   = [];
 let currentIndex = 0;
@@ -42,7 +42,6 @@ export async function displayInspiration() {
   const btnNext = document.getElementById('btn-next');
 
   // Éviter de re-binder les listeners à chaque visite
-  // On utilise un flag sur l'élément
   if (!section.dataset.initialized) {
     btnPrev.addEventListener('click', () => {
       if (currentIndex > 0) {
