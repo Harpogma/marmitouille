@@ -1,36 +1,25 @@
 // src/recettes.js
 // Logique d'affichage des recettes d'un genre + custom element recipe-card
 
-import { fetchGenre, fetchRecipesByGenre } from './api.js';
+import { fetchGenre, fetchRecipesByGenre } from "./api.js";
 
 // ─── Custom Element : recipe-card ────────────────────────────────────────────
 
 class RecipeCard extends HTMLElement {
-  constructor() {
-    super();
+  connectedCallback() {
+    const recipe = this.recipe;
+    if (!recipe) return;
+
     this.innerHTML = `
-      <img class="recipe-preview" src="" alt="" />
+      <img class="recipe-preview" src="${recipe.preview_url}" alt="${recipe.name}" />
       <div class="recipe-info">
-        <span class="recipe-name"></span>
+        <span class="recipe-name">${recipe.name}</span>
       </div>
     `;
   }
-
-  /**
-   * Hydrate le composant avec un objet recette
-   * @param {Object} recipe
-   */
-  setRecipe(recipe) {
-    const img  = this.querySelector('.recipe-preview');
-    const name = this.querySelector('.recipe-name');
-
-    img.src  = recipe.preview_url;
-    img.alt  = recipe.name;
-    name.textContent = recipe.name;
-  }
 }
 
-customElements.define('recipe-card', RecipeCard);
+customElements.define("recipe-card", RecipeCard);
 
 // ─── Affichage des recettes d'un genre ───────────────────────────────────────
 
@@ -39,33 +28,30 @@ customElements.define('recipe-card', RecipeCard);
  * @param {string} genreId
  */
 export async function displayRecettes(genreId) {
-  const section = document.getElementById('section-recettes');
-  const titleEl = section.querySelector('.section-title');
-  const list    = section.querySelector('.recettes');
+  const section = document.getElementById("section-recettes");
+  const titleEl = section.querySelector(".section-title");
+  const list = section.querySelector(".recettes");
 
-  list.innerHTML = '';
-  titleEl.textContent = 'Chargement…';
+  list.innerHTML = "";
+  titleEl.textContent = "Chargement…";
 
   try {
-    // On récupère le genre (pour son nom) et ses recettes en parallèle
     const [genre, recettes] = await Promise.all([
       fetchGenre(genreId),
       fetchRecipesByGenre(genreId),
     ]);
 
-    titleEl.textContent =
-      `Genres de recettes > ${genre.title} (${recettes.length})`;
+    titleEl.textContent = `Genres de recettes > ${genre.title} (${recettes.length})`;
 
-    recettes.forEach(recipe => {
-      const li   = document.createElement('li');
-      const card = document.createElement('recipe-card');
-      card.setRecipe(recipe);
+    recettes.forEach((recipe) => {
+      const li = document.createElement("li");
+      const card = document.createElement("recipe-card");
+      card.recipe = recipe;
       li.appendChild(card);
       list.appendChild(li);
     });
-
   } catch (err) {
-    titleEl.textContent = 'Erreur';
+    titleEl.textContent = "Erreur";
     list.innerHTML = `<p style="color:red">Erreur : ${err.message}</p>`;
   }
 }
